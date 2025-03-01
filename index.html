@@ -16,11 +16,32 @@
     <body>
         <h1>Etch-a-Sketch</h1>
         <div class="buttons">
-            <button>Reset Board Size</button>
-            <button>Black and White</button>
-            <button>Rainbow</button>
-            <button>Clear Board</button>
+            <div>
+                <input
+                    type="range"
+                    id="grid-size"
+                    name="grid-size"
+                    min="1"
+                    max="50"
+                    value="5"
+                />
+                <label for="grid-size"
+                    >Grid Size: <span id="size-value">5 x 5</span>
+                </label>
+            </div>
+            <div>
+                <input
+                    type="color"
+                    id="palette"
+                    name="palette"
+                    value="#000000"
+                />
+                <button id="btn-bw">Color Mode</button>
+            </div>
+            <button id="btn-rainbow">Rainbow Mode</button>
+            <button id="btn-eraser">Eraser</button>
+            <button id="btn-clear">Clear Board</button>
         </div>
-        <div id="container"></div>
+        <div id="grid-container"></div>
     </body>
 </html>
