@@ -8,26 +8,44 @@ const btnClear = document.getElementById("btn-clear");
 const colorPalette = document.getElementById("palette");
 
 let n = document.getElementById("grid-size").value;
-let brushColor = "#000000";
 
+// Default color
+let brushColor = colorPalette.value;
+
+// Color input from the picker
 colorPalette.addEventListener("input", function (e) {
     brushColor = e.target.value;
-    console.log(brushColor);
 });
 
-// Initial grid of n x n (5x5)
+// Generate initial grid of n x n (5x5)
 generateBoard();
 
+// Generate new grid upon changing grid size from the input
 rangeInput.addEventListener("input", function (e) {
     n = e.target.value;
     generateBoard();
 });
 
+// Event listeners for buttons
+btnBW.addEventListener("click", function () {
+    addColor(brushColor);
+});
+
+btnEraser.addEventListener("click", function () {
+    addColor("white");
+});
+
+btnRainbow.addEventListener("click", function () {
+    addColor(getRandomColor(), true);
+});
+
+btnClear.addEventListener("click", clearBoard);
+
+// Generate board of size n x n and set default brush color
 function generateBoard() {
-    console.log(n);
     sizeValue.textContent = `${n} x ${n}`;
 
-    // Remove all squares
+    // Remove all existing squares
     container.innerHTML = "";
 
     // Generate squares of n x n
@@ -39,73 +57,56 @@ function generateBoard() {
     container.style.gridTemplateColumns = `repeat(${n}, 1fr)`;
     container.style.gridTemplateRows = `repeat(${n}, 1fr)`;
 
+    addColor(brushColor);
+}
+
+// Add color to the grid elements upon clicking
+function addColor(color, isRainbow = false) {
     const squares = document.querySelectorAll(".square");
 
     squares.forEach((square) => {
-        square.addEventListener("click", function (btnSelected) {
-            console.log(brushColor);
-            square.style.backgroundColor = brushColor;
-            console.log(square.style.backgroundColor);
+        square.addEventListener("click", function () {
+            const finalColor = isRainbow ? getRandomColor() : color;
+            square.style.backgroundColor = finalColor;
         });
     });
+}
 
-    btnBW.addEventListener("click", function () {
-        squares.forEach((square) => {
-            square.addEventListener("click", function (btnSelected) {
-                square.style.backgroundColor = brushColor;
-            });
-        });
-    });
+// Generate Random Color
+function getRandomColor() {
+    const hexCharacters = [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+    ];
 
-    btnEraser.addEventListener("click", function () {
-        squares.forEach((square) => {
-            square.addEventListener("click", function (btnSelected) {
-                square.style.backgroundColor = "white";
-            });
-        });
-    });
+    let hexValue = "";
 
-    btnRainbow.addEventListener("click", function () {
-        function getRandomColor() {
-            const hexCharacters = [
-                0,
-                1,
-                2,
-                3,
-                4,
-                5,
-                6,
-                7,
-                8,
-                9,
-                "a",
-                "b",
-                "c",
-                "d",
-                "e",
-                "f",
-            ];
+    for (let i = 0; i < 6; i++) {
+        let x = Math.floor(Math.random() * hexCharacters.length);
+        hexValue += hexCharacters[x];
+    }
+    return `#${hexValue}`;
+}
 
-            hexValue = "";
+// Clear the board
+function clearBoard() {
+    const squares = document.querySelectorAll(".square");
 
-            for (let i = 0; i < 6; i++) {
-                let x = Math.floor(Math.random() * hexCharacters.length);
-                this.hexValue += hexCharacters[x];
-            }
-            return hexValue;
-        }
-
-        squares.forEach((square) => {
-            square.addEventListener("click", function () {
-                getRandomColor();
-                square.style.backgroundColor = `#${hexValue}`;
-            });
-        });
-    });
-
-    btnClear.addEventListener("click", function () {
-        squares.forEach((square) => {
-            square.style.backgroundColor = "white";
-        });
+    squares.forEach((square) => {
+        square.style.backgroundColor = "white";
     });
 }
