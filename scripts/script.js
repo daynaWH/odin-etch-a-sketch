@@ -1,7 +1,7 @@
 const container = document.getElementById("grid-container");
 const rangeInput = document.getElementById("grid-size");
 const sizeValue = document.getElementById("size-value");
-const btnBW = document.getElementById("btn-bw");
+// const btnColorMode = document.getElementById("btn-colormode");
 const btnRainbow = document.getElementById("btn-rainbow");
 const btnEraser = document.getElementById("btn-eraser");
 const btnClear = document.getElementById("btn-clear");
@@ -15,6 +15,7 @@ let brushColor = colorPalette.value;
 // Color input from the picker
 colorPalette.addEventListener("input", function (e) {
     brushColor = e.target.value;
+    addColor(brushColor);
 });
 
 // Generate initial grid of n x n (5x5)
@@ -27,9 +28,9 @@ rangeInput.addEventListener("input", function (e) {
 });
 
 // Event listeners for buttons
-btnBW.addEventListener("click", function () {
-    addColor(brushColor);
-});
+// btnColorMode.addEventListener("click", function () {
+//     addColor(brushColor);
+// });
 
 btnEraser.addEventListener("click", function () {
     addColor("white");
@@ -65,7 +66,7 @@ function addColor(color, isRainbow = false) {
     const squares = document.querySelectorAll(".square");
 
     squares.forEach((square) => {
-        square.addEventListener("click", function () {
+        square.addEventListener("mouseover", function () {
             const finalColor = isRainbow ? getRandomColor() : color;
             square.style.backgroundColor = finalColor;
         });

@@ -15,33 +15,35 @@
     </head>
     <body>
         <h1>Etch-a-Sketch</h1>
-        <div class="buttons">
-            <div>
-                <input
-                    type="range"
-                    id="grid-size"
-                    name="grid-size"
-                    min="1"
-                    max="50"
-                    value="5"
-                />
-                <label for="grid-size"
-                    >Grid Size: <span id="size-value">5 x 5</span>
-                </label>
+        <div class="sketch-wrapper">
+            <div class="buttons">
+                <div class="input-grid-size">
+                    <input
+                        type="range"
+                        id="grid-size"
+                        name="grid-size"
+                        min="1"
+                        max="50"
+                        value="5"
+                    />
+                    <label for="grid-size"
+                        >Grid Size: <span id="size-value">5 x 5</span>
+                    </label>
+                </div>
+                <div class="input-mode">
+                    <input
+                        type="color"
+                        id="palette"
+                        name="palette"
+                        value="#000000"
+                    />
+                    <!-- <button id="btn-colormode">Color Mode</button> -->
+                    <button id="btn-rainbow">Rainbow Mode</button>
+                    <button id="btn-eraser">Eraser</button>
+                    <button id="btn-clear">Clear Board</button>
+                </div>
             </div>
-            <div>
-                <input
-                    type="color"
-                    id="palette"
-                    name="palette"
-                    value="#000000"
-                />
-                <button id="btn-bw">Color Mode</button>
-            </div>
-            <button id="btn-rainbow">Rainbow Mode</button>
-            <button id="btn-eraser">Eraser</button>
-            <button id="btn-clear">Clear Board</button>
+            <div id="grid-container"></div>
         </div>
-        <div id="grid-container"></div>
     </body>
 </html>

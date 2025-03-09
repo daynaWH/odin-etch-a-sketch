@@ -1,5 +1,6 @@
 body {
     text-align: center;
+    background-color: #f5f5dcd2;
 }
 
 h1 {
@@ -10,11 +11,16 @@ button {
     font-family: "Economica", serif;
 }
 
+.input-mode {
+    margin: 1rem;
+}
+
 #grid-container {
     display: grid;
-    max-width: 45rem;
-    height: 45rem;
+    max-width: 40rem;
+    height: 40rem;
     margin: 0 auto;
+    background-color: #ffffff;
 }
 
 .square {
