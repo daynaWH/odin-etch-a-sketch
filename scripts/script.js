@@ -1,7 +1,6 @@
 const container = document.getElementById("grid-container");
 const rangeInput = document.getElementById("grid-size");
 const sizeValue = document.getElementById("size-value");
-// const btnColorMode = document.getElementById("btn-colormode");
 const btnRainbow = document.getElementById("btn-rainbow");
 const btnEraser = document.getElementById("btn-eraser");
 const btnClear = document.getElementById("btn-clear");
@@ -26,11 +25,6 @@ rangeInput.addEventListener("input", function (e) {
     n = e.target.value;
     generateBoard();
 });
-
-// Event listeners for buttons
-// btnColorMode.addEventListener("click", function () {
-//     addColor(brushColor);
-// });
 
 btnEraser.addEventListener("click", function () {
     addColor("white");
